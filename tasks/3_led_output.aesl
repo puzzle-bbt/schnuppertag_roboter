@@ -1,0 +1,50 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node Thymio-II-->
+<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II"><![CDATA[# LED Output
+
+# Stelle die Farbe des Lämpchens auf der oberen Seite des Roboters auf maximale Helligkeit
+call leds.top(32, 32, 32)
+
+#*
+call: ruft eine Funktion auf
+leds.top(..) ist die Funktion
+32, 32, 32 sind die Argumente der Funktion. In diesem Fall, die Rot/Grün/Blau Werte (oder kurz RGB)
+
+RGB ist ein Farbschema, welches alle Farben definiert mittels den drei Grund-Farben Rot, Grün und Blau. Für alle drei Farben kann jeweils ein Wert zwischen 0 und 32 genommen werden, wobei 32 das intensivste Level ist.
+
+Einige Beispiele:
+Rot: 32, 0, 0
+Blau: 0, 0, 32
+Grün: 0, 32, 0
+
+Violett: 32, 0, 32
+Hellblau: 0, 32, 32
+Gelb: 32, 32, 0
+
+*#
+
+
+#*
+Aufgabe 1
+Setze das Lämpchen auf jede der obengenannten Farben
+
+*#
+
+#*
+Aufgabe 2
+Es gibt weitere Lämpchen, welche man mit Funktionen steuern kann. Dazu gehören zum Beispiel:
+leds.bottom.left und leds.bottom.right
+Setze einen dieser Lämpchen auf die Farbe Rot und die andere auf Blau.
+
+(Achtung, vergiss nicht das Schlüsselwort call am Anfang der Zeile um eine Funktion aufzurufen-
+*#
+]]></node>
+
+
+</network>

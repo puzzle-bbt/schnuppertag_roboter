@@ -1,0 +1,27 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node Thymio-II-->
+<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II"><![CDATA[# Mathematisch Operationen
+
+var addition = 2 + 4
+var subtraktion = 42 - 2
+var multiplikation = 4 * 4
+var division = 8 / 4
+
+var complicated = 7 * ( 2 + 4)
+
+var solution1 = addition - division
+var solution2 = complicated / solution1
+
+#*
+Aufgabe 1:
+Welcher Wert steckt in der Variabeln solution1 und solution2?
+*#]]></node>
+
+
+</network>

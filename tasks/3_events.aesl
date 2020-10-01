@@ -1,0 +1,71 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node Thymio-II-->
+<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II"><![CDATA[# Input
+
+#*
+Der Roboter hat viele Sensoren, auf welche man reagieren kann.
+Viele dieser Sensoren sind Distanzsensoren.
+
+Suche in der Variablen-List auf der linken Seite den Sensor: prox.horizontal und klappe ihn auf indem du auf den Pfeil auf der linken Seite klickst.
+
+Bewege deine Hand um den Roboter und sieh zu, wie sich die Werte beim Sensor verändern. Dafür muss der Roboter mit dem Computer verbunden sein.
+
+Aufgabe 1:
+Welcher der Sensoren (0 bis 6) misst Hindernisse direkt vor dem Roboter?
+*#
+
+
+
+
+#*
+Zuerst aber noch etwas anderes: Ein If-Block.
+Die Befehle innerhalt von then und end, werden nur ausgeführt, falls in der ersten Zeile die Bedingung erfüllt ist
+*#
+if 0 < 2 then
+	call leds.top(32, 0, 0)
+end
+
+if  5 > 10 then
+	call leds.top(0, 32, 0)
+end
+
+#*
+Aufgabe 2:
+Welche Farbe haben die Lämpchen?
+*#
+
+
+#*
+prox ist ein Ereignis, und wenn die Sensoren etwas messen, wird der folgende Block ausgeführt. Wir können dann testen, welche Sensor etwas misst und entsprechend reagieren.
+
+Im folgendem Beispiel flüchtet der Roboter von einem Hindernis
+*#
+
+onevent prox
+
+	# Starte Motor, falls Sensor etwas spürt.
+	if prox.horizontal[2] > 2000   then
+		motor.left.target = -200
+		motor.right.target = -200
+	end
+	
+	# Stoppe Motor, falls Sensor nichts spürt.
+	if  prox.horizontal[2] < 2000 then
+		motor.left.target = 0
+		motor.right.target = 0		
+	end
+	
+#*
+Aufgabe 3:
+Verändere die obigen Blöcke so, dass der Roboter nicht von einem Hindernis flüchtet, sondern es verfolgt. Schalte zusätzlich die Lämpchen an mit einer Farbe deiner Wahl.
+(Achtung, der Roboter soll auch stoppen, sobald er sehr nahe am Hindernis ist)
+*#]]></node>
+
+
+</network>
