@@ -1,0 +1,149 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node Thymio-II Wireless-->
+<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II Wireless"><![CDATA[
+var isBlue = 1
+var trailing = 0
+var prox_trigger = 0
+var prox_max = 4000
+var trail_speed = 200
+var random_value = 0
+var patrolling = 0
+var reversing = 0
+var patrol_speed = 100
+
+
+call sound.system(-1)
+call leds.top(0, 0, 0)
+call leds.bottom.left(0, 0, 0)
+call leds.bottom.right(0, 0, 0)
+call leds.circle(0, 0, 0, 0, 0, 0, 0, 0)
+	
+	
+onevent timer0
+	if  isBlue == 1 then
+		call leds.top(32,0,0)		
+		isBlue = 0
+		# call sound.freq(770, 30)
+	else
+		call leds.top(0,0,32)		
+		isBlue = 1		
+# 		call sound.freq(550, 30)
+	end
+
+onevent timer1
+	if reversing == 1 then
+		reversing = 0
+	else
+		patrolling = patrolling + 1
+	end
+	
+	
+onevent prox
+	
+	trailing = 1
+	
+		if prox.horizontal[2] > prox_trigger then
+		motor.left.target = trail_speed
+		motor.right.target = trail_speed
+		elseif prox.horizontal[0] > prox_trigger then
+		motor.left.target = 0
+		motor.right.target = trail_speed
+	elseif prox.horizontal[1] > prox_trigger then
+		motor.left.target = trail_speed / 2
+		motor.right.target = trail_speed
+	elseif prox.horizontal[3] > prox_trigger    then
+		motor.left.target = trail_speed / 2
+		motor.right.target = trail_speed
+	elseif prox.horizontal[4] > prox_trigger then
+		motor.left.target = trail_speed
+		motor.right.target = 0
+	else
+		trailing = 0
+	end
+	
+	
+	if  prox.horizontal[2] > prox_max or prox.horizontal[1] > prox_max or
+	prox.horizontal[2] > prox_max or prox.horizontal[3] > prox_max or
+	prox.horizontal[4] > prox_max then
+		callsub stop
+	end
+	
+	
+	if  trailing == 1  then
+		timer.period[0] = 500
+		patrolling = 0
+	else
+		timer.period[0] = 0
+		
+		call leds.top(16,0,0)
+		call leds.top(16,0,0)
+		
+		if  patrolling == 0 then
+			
+			callsub stop
+			callsub random_turn_length
+			timer.period[1] =  random_value
+			
+			callsub random_turn_direction
+			if  random_value == 0 then
+				motor.left.target = patrol_speed
+				motor.right.target = 0
+			else
+				motor.left.target = 0
+				motor.right.target = patrol_speed
+			end
+			
+			patrolling = 1
+			
+		elseif patrolling == 2 then
+			
+			callsub stop
+			motor.left.target = patrol_speed
+			motor.right.target = patrol_speed
+			callsub random_patrolling_length
+			timer.period[1] =  random_value
+			patrolling = 3
+			
+		elseif patrolling == 4 then
+			callsub stop
+			patrolling = 0
+		end
+	end
+	
+	if prox.ground.reflected[0] < 200 or prox.ground.reflected[1] < 200 then
+		reversing = 1
+		callsub reverse
+	end
+
+	
+	
+	
+sub random_patrolling_length
+	call math.rand(random_value)
+	random_value = (abs(random_value) % 12)*500 + 1000
+	
+sub random_turn_length
+	call math.rand(random_value)
+	random_value = (abs(random_value) % 6)*500 + 1000
+	
+sub random_turn_direction
+	call math.rand(random_value)
+	random_value = abs(random_value) % 2
+	
+sub stop
+	motor.left.target = 0
+	motor.right.target = 0
+	
+sub reverse
+	motor.left.target = -patrol_speed
+	motor.right.target = -patrol_speed
+	]]></node>
+
+
+</network>
