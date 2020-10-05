@@ -21,6 +21,9 @@ var solution2 = complicated / solution1
 #*
 Aufgabe 1:
 Welcher Wert steckt in der Variabeln solution1 und solution2?
+
+Zusatzaufgabe:
+Was geschieht wenn subtraktion - addition + multiplikation * division?
 *#]]></node>
 
 

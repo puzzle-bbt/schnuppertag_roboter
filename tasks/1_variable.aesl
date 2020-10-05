@@ -15,15 +15,15 @@ motor.right.target = speed
 
 #*
 Aufgabe 1: 
-Benenne die Variable speed um zu speed_left. 
+Benenne die Variable speed um zu target_motor_speed.
 (Achtung, vergiss nicht die Variable überall umzubennen.)
 *#
 
 
 #*
 Aufgabe 2:
-Führe eine neue Variable ein, welche den anderen Motor steuert.
-Setze sie so, dass der Roboter einen kleinen kreis fährt.
+Führe die Variable right_motor_speed ein, welche den rechten Motor steuert.
+Setze sie so, dass der Roboter einen kleinen Kreis fährt.
 *#]]></node>
 
 

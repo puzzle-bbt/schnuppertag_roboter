@@ -1,0 +1,37 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node -->
+<node name=""><![CDATA[var sensorLeftRear = prox.horizontal[5]
+var sensorRightRear = prox.horizontal[6]
+
+var sensorLeftFront = 0
+var sensorFront = 0
+var sensorRightFront = 0
+
+var leftMotorSpeed = 0
+var rightMotorSpeed = 0
+
+onevent prox
+	callsub update_proxies
+	callsub generate_driving_speeds
+	motor.left.target = leftMotorSpeed
+	motor.right.target = rightMotorSpeed
+
+sub generate_driving_speeds
+	rightMotorSpeed = (sensorRightRear + -sensorRightFront) / 13
+	leftMotorSpeed = (sensorLeftRear + -sensorLeftFront) / 13
+
+sub update_proxies 
+	sensorLeftRear = prox.horizontal[5]
+	sensorRightRear = prox.horizontal[6]
+	sensorLeftFront = prox.horizontal[4]
+	sensorRightFront = prox.horizontal[0]
+]]></node>
+
+
+</network>

@@ -1,0 +1,45 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node -->
+<node name=""><![CDATA[var sensorLeftFront = 0
+var sensorFront = 0
+var sensorRightFront = 0
+
+var leftMotorSpeed = 0
+var rightMotorSpeed = 0
+
+var isBlue = 0
+
+onevent prox
+	callsub update_proxies
+	callsub generate_driving_speeds
+	motor.left.target = leftMotorSpeed
+	motor.right.target = rightMotorSpeed
+
+sub generate_driving_speeds
+	rightMotorSpeed = (sensorRightFront + sensorFront )/ 15
+	leftMotorSpeed = (sensorLeftFront + sensorFront) / 15
+
+sub update_proxies 
+	sensorFront = prox.horizontal[2]
+	sensorLeftFront = prox.horizontal[4]
+	sensorRightFront = prox.horizontal[0]
+	
+	
+onevent timer0
+	if  isBlue == 1 then
+		call leds.top(32,0,0)		
+		isBlue = 0
+	else
+		call leds.top(0,0,32)		
+		isBlue = 1		
+	end
+]]></node>
+
+
+</network>

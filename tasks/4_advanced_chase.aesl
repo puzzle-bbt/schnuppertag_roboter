@@ -1,0 +1,82 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--node Thymio-II-->
+<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II"><![CDATA[
+# Polizei und Räuber
+Suche dir eine/n Programmier Partner/in, mit welcher/m du Eine warhaft spannende verfolgung Programmieren wirst.
+
+Da du jetzt ein Roboterspezialist oder Spezialistin bist, Programmiere den einen Roboter das er geradeaus davonfährt und den anderen so, das ihn diesen verfolgt.
+
+## Räuber:
+var sensorLeftRear = prox.horizontal[5]
+var sensorRightRear = prox.horizontal[6]
+
+var sensorLeftFront = 0
+var sensorFront = 0
+var sensorRightFront = 0
+
+var leftMotorSpeed = 0
+var rightMotorSpeed = 0
+
+onevent prox
+	callsub update_proxies
+	callsub generate_driving_speeds
+	motor.left.target = __________
+	motor.right.target = __________
+
+sub generate_driving_speeds
+    __________ / 13
+    __________ / 13
+
+sub update_proxies
+	sensorLeftRear = prox.horizontal[5]
+	sensorRightRear = prox.horizontal[6]
+	sensorLeftFront = prox.horizontal[4]
+	sensorRightFront = prox.horizontal[0]
+
+
+## Police
+var sensorLeftFront = 0
+var sensorFront = 0
+var sensorRightFront = 0
+
+var leftMotorSpeed = 0
+var rightMotorSpeed = 0
+
+var isBlue = 0
+
+onevent prox
+	callsub update_proxies
+	callsub generate_driving_speeds
+	motor.left.target = leftMotorSpeed
+	motor.right.target = rightMotorSpeed
+
+sub generate_driving_speeds
+	__________ / 15
+	__________ / 15
+
+sub update_proxies
+	sensorFront = prox.horizontal[2]
+	sensorLeftFront = prox.horizontal[4]
+	sensorRightFront = prox.horizontal[0]
+
+
+onevent timer0
+	if  isBlue == 1 then
+		__________
+		isBlue = 0
+	else
+		__________
+		isBlue = 1
+	end
+
+
+]]></node>
+
+
+</network>
