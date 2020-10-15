@@ -1,4 +1,4 @@
-# bbt_schnuppertag_thymio
+# bbt_schnuppertag_roboter
 
 Der Thymio Roboter kann programmiert werden mit der **Thymio Suite** Software. Die Sprache mit der der Roboter programmiert werden soll kann sogar ausgewählt werden mit folgenden Optionen: VPL, Vpl3, Scratch, Blockly oder Aseba. Für den Schnuppertag wurde Aseba genutzt.
 
