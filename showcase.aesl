@@ -5,17 +5,17 @@
 <!--list of global events-->
 
 
-<!--node Thymio-II Wireless-->
-<node nodeId="{92d5f5d9-3744-4f31-8f1f-ac00e8878001}" name="Thymio-II Wireless"><![CDATA[
+<!--node Thymio A0 on lbruegger-puzzle - 31-->
+<node name="Thymio A0 on lbruegger-puzzle - 31" nodeId="{9890cba0-a13f-407e-9e3e-641e868413dd}"><![CDATA[
 var isBlue = 1
 var trailing = 0
 var prox_trigger = 0
 var prox_max = 4000
-var trail_speed = 200
+var trail_speed = 800
 var random_value = 0
 var patrolling = 0
 var reversing = 0
-var patrol_speed = 100
+var patrol_speed = 400
 
 
 call sound.system(-1)
@@ -33,7 +33,7 @@ onevent timer0
 	else
 		call leds.top(0,0,32)		
 		isBlue = 1		
-# 		call sound.freq(550, 30)
+ 		# call sound.freq(550, 30)
 	end
 
 onevent timer1
